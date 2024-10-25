@@ -1,11 +1,10 @@
+version: '3.8'
+
 services:
-  node-torrent:
+  portester:
     build: .
     pull_policy: build
     ports:
       - "3000:3001"
     environment:
       DB_PATH: ./prisma/
-    # volumes:
-      # - ${DB_PATH}:/:rw
-      #- ./notmy.env:/.env

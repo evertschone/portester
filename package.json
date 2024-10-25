@@ -5,7 +5,7 @@
     "scripts": {
         "start": "node dist/server.js",
         "build": "npx tsc",
-        "dev": "ts-node src/server.ts"
+        "dev": "node --loader ts-node/esm ./src/server.ts"
     },
     "dependencies": {
         "express": "^4.17.1"
