@@ -1,0 +1,10 @@
+services:
+  node-torrent:
+    build: .
+    ports:
+      - "3000:3001"
+    environment:
+      DB_PATH: ./prisma/
+    # volumes:
+      # - ${DB_PATH}:/:rw
+      #- ./notmy.env:/.env
