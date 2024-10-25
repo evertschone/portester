@@ -1,6 +1,7 @@
 services:
   node-torrent:
     build: .
+    pull_policy: build
     ports:
       - "3000:3001"
     environment:
