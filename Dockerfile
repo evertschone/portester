@@ -1,4 +1,3 @@
-# Use the official Node.js image as a parent image
 FROM node:16
 
 # Set the working directory inside the container
@@ -7,13 +6,19 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json (or npm-shrinkwrap.json) files
 COPY package*.json ./
 
-# Install dependencies including ts-node
+# Install dependencies including ts-node and TypeScript
 RUN npm install
+RUN npm install -g typescript
 
 # Copy the rest of your application code
 COPY . .
 
-RUN npm run build
+# Ensure all files are executable
+RUN chmod -R +x .
+
+# Run build using the globally installed TypeScript compiler
+RUN tsc
+
 # Generate Prisma client
 # RUN npx prisma generate
 
@@ -21,5 +26,3 @@ RUN npm run build
 EXPOSE 3001
 
 RUN npm run start
-# Define the command to run your app using ts-node
-# CMD ["ts-node", "src/server.ts"]
