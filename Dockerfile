@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:22-alpine
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -14,15 +14,12 @@ RUN npm install -g typescript
 COPY . .
 
 # Ensure all files are executable
-RUN chmod -R +x .
+# RUN chmod -R +x .
 
 # Run build using the globally installed TypeScript compiler
 RUN tsc
 
-# Generate Prisma client
-# RUN npx prisma generate
-
 # Your app binds to port 3000 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 3001
 
-RUN npm run start
+CMD ["node", "dist/server.js"]
